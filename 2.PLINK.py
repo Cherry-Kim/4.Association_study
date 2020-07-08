@@ -1,11 +1,11 @@
 import string,sys,os,glob
 
 POP='TEST'
-POP1='YUHL_WGS'
-POP2='EYE2'
-'''
+POP1='TEST1'
+POP2='TEST2'
+
 print ' ### STEP1. Annotatino using SnpEff - rs ###'
-os.system('java -jar /home/hykim/program/snpEff/SnpSift.jar annotate /home/hykim/REF/dbsnp_138.hg19.vcf EYE_genotype.vcf > EYE2.dbSNP.vcf')
+os.system('java -jar /home/hykim/program/snpEff/SnpSift.jar annotate /home/hykim/REF/dbsnp_138.hg19.vcf TEST1_genotype.vcf > TEST1.dbSNP.vcf')
 
 print ' ### STEP2-1. Delete chrX,Y,M, Indel ###'
 fp=glob.glob('*dbSNP.vcf')
@@ -50,17 +50,16 @@ fp.close()
 
 fp=open('merged.fam','r')
 fpout=open('merged2.fam','w')
-#fpout1=open('merged.nosex','w')
+fpout1=open('merged.nosex','w')
 for line in fp:
 	line_temp=line.split(' ')
 	sample=line_temp[1]
 	if sample in ID.keys():
 		fpout.write(line_temp[1]+' '+line_temp[1]+' '+line_temp[2]+' '+line_temp[3]+' '+ID[sample][0]+' '+ID[sample][1]+'\n')
-#		fpout1.write(ID[sample][0]+'\t'+line_temp[1]+'\n')
+		fpout1.write(ID[sample][0]+'\t'+line_temp[1]+'\n')
 fp.close()
-#fpout.close()
-'''
-#os.system('mv merged2.fam merged.fam')
+fpout.close()
+os.system('mv merged2.fam merged.fam')
 
-#print ' ### STEP3-2. GWAS using PLINK2 ###'
+print ' ### STEP3-2. GWAS using PLINK2 ###'
 os.system('plink2 --bfile merged --linear --covar TEST_cov.txt --covar-name sex,pop --pheno Protein.txt --pheno-name protein --out result --adjust')
