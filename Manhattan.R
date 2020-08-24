@@ -1,7 +1,7 @@
 library(data.table)
-library(qqman
+library(qqman)
 
-data <- data.frame(fread("adjusted_Re_AD.assoc.logistic",header=T,sep=" "))
+data <- data.frame(fread("adjusted_.assoc.logistic",header=T,sep=" "))
 
 manhattan(data, main = "Manhattan Plot", ylim = c(0, 10), cex = 0.6, cex.axis = 0.9, col = c("blue4", "orange3"),chrlabs = c(1:20, "X", "Y"))
 
