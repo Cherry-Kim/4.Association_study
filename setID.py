@@ -1,7 +1,8 @@
-import string,sys
+import string,sys,os
 
 print '### STEP1. Construct merged.SetID ###'
-fp=open('/home/hykim/REF/Human/hg19.ncbiRefSeq.sort.de.txt','r')
+#os.system('wget ?')
+fp=open('hg19.ncbiRefSeq.sort.de.txt','r')
 info={}
 for line in fp:
 	line_temp=line[:-1].split('\t') #['1', '11874', '14409', 'DDX11L1']
