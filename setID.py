@@ -1,7 +1,6 @@
 import string,sys,os
 
 print '### STEP1. Construct merged.SetID ###'
-#os.system('wget ?')
 fp=open('hg19.ncbiRefSeq.sort.de.txt','r')
 info={}
 for line in fp:
